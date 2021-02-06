@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Photo_Sea.Models.TablePhoto>
+@using Microsoft.AspNetCore.Identity
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>|<a href="Home/DownloadZip" target="_blank">Download </a>
+</p>
+
+<table class="table">
+    
+    <tbody>
+        
+@foreach (var item in Model) {
+@if (item.Cname == @User.Identity.Name)
+                {
+        <tr>
+            
+            <td>
+                <img src="@("~/Photo/"+item.PictureName)" asp-append-version="true" width="125" height="155" >
+            </td>
+            
+            <td>
+                 
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-dark">Delete</a>
+                <a href="Home/DownloadZip" target="_blank" class="btn btn-dark">Download </a>
+            </td>
+        </tr>
+
+		}
+		} 
+    </tbody>
+</table>
